@@ -130,6 +130,7 @@ public class Cipher extends JFrame{
 
             mesg = mesg.replace("\n","").replace("\r","");
             mesg = mesg.replace("\s","").replace("\r","");
+            mesg = mesg.replace("'","").replace("\r","");
             mesg = mesg.replaceAll("[^a-zA-Z0-9]", "");
         }
 
