@@ -68,7 +68,7 @@ public class Cipher extends JFrame{
             public void actionPerformed(ActionEvent evt) {
                 mesg = mesg.toLowerCase();
                 String msgCifrado = cipherVigenere(mesg,key.getText());
-                /*try{
+                try{
                     BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+"_C.txt"));
                     writer.write(msgCifrado);
                     writer.close();
@@ -76,7 +76,7 @@ public class Cipher extends JFrame{
                     e.printStackTrace();
                 }
                 JOptionPane.showMessageDialog(null, "Tu mensaje se ha cifrado correctamente."); 
-                System.exit(0);*/
+                System.exit(0);
             }
         });
         panel.add(bCifrar);
@@ -137,7 +137,24 @@ public class Cipher extends JFrame{
 
     private String cipherVigenere(String text, String key){
         String res = "";
-        
+        int j = 0;
+        //recorrer todo el text
+        for(int i =0; i<text.length(); i++){
+            char c = text.charAt(i);
+            int ascci = c;
+            ascci = ascci - 97;
+            //Tenemos el valor de la letra en alfabeto ingles
+            if(j== key.length()){
+                j = 0;
+            }
+            char llave = key.charAt(j);
+            j++;
+            int codllave = llave - 97;
+            int cifrado = (codllave + ascci) %25;
+            cifrado = cifrado + 97;
+            c = (char) cifrado;
+            res = res + Character.toString(c);
+        }
         return res;
     }
 
