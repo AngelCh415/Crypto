@@ -175,7 +175,7 @@ public class Cipher extends JFrame{
         for(int i = 0; i<key.length(); i++){
             char c = key.charAt(i);
             int aux = c - 97;
-            aux = 25 - aux;
+            aux = 25 + (-aux);
             aux = aux + 97;
             c = (char) aux;
             invkey= invkey + Character.toString(c);
