@@ -86,7 +86,16 @@ public class Cipher extends JFrame{
         bDescifrar.setBackground(new Color(255, 255, 255));
         bDescifrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                //decipherVigenere();
+                String msgDecifrado = decipherVigenere(mesg, key.getText());
+                try{
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(fileName+"_D.txt"));
+                    writer.write(msgDecifrado);
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                JOptionPane.showMessageDialog(null, "Tu mensaje se ha decifrado correctamente."); 
+                System.exit(0);
             }
         });
         panel.add(bDescifrar);
@@ -160,7 +169,36 @@ public class Cipher extends JFrame{
 
     private String decipherVigenere(String text, String key){
         String res = "";
-        
+        String invkey="";
+        //Sacar el inverso de la key -k mod 25
+        for(int i = 0; i<key.length(); i++){
+            char c = key.charAt(i);
+            int aux = c - 97;
+            aux = 25 - aux;
+            aux = aux + 97;
+            c = (char) aux;
+            invkey= invkey + Character.toString(c);
+        }
+        //Una vez con la inversa de la llave procederemos a decifrar
+        int j = 0;
+        //recorrer todo el text
+        for(int i =0; i<text.length(); i++){
+            char c = text.charAt(i);
+            int ascci = c;
+            ascci = ascci - 97;
+            //Tenemos el valor de la letra en alfabeto ingles
+            if(j== invkey.length()){
+                j = 0;
+            }
+            char llave = invkey.charAt(j);
+            j++;
+            int codllave = llave - 97;
+            int cifrado = (codllave + ascci) %25;
+            cifrado = cifrado + 65;
+            c = (char) cifrado;
+            res = res + Character.toString(c);
+        }
+        //res.toUpperCase();
         return res;
     }
 
