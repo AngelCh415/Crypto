@@ -146,6 +146,7 @@ public class Cipher extends JFrame{
     }
 
     private String cipherVigenere(String text, String key){
+        //Criptografia de forma clasico y polialfabetico. Por el tipo de llaves es simetrico
         String res = "";
         int j = 0;
         //recorrer todo el text
