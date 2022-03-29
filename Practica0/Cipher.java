@@ -161,7 +161,7 @@ public class Cipher extends JFrame{
             char llave = key.charAt(j);
             j++;
             int codllave = llave - 97;
-            int cifrado = (codllave + ascci) %25;
+            int cifrado = (codllave + ascci) %26;
             cifrado = cifrado + 97;
             c = (char) cifrado;
             res = res + Character.toString(c);
@@ -172,11 +172,11 @@ public class Cipher extends JFrame{
     private String decipherVigenere(String text, String key){
         String res = "";
         String invkey="";
-        //Sacar el inverso de la key -k mod 25
+        //Sacar el inverso de la key -k mod 26
         for(int i = 0; i<key.length(); i++){
             char c = key.charAt(i);
             int aux = c - 97;
-            aux = 25 + (-aux);
+            aux = 26 + (-aux);
             aux = aux + 97;
             c = (char) aux;
             invkey= invkey + Character.toString(c);
@@ -195,7 +195,7 @@ public class Cipher extends JFrame{
             char llave = invkey.charAt(j);
             j++;
             int codllave = llave - 97;
-            int cifrado = (codllave + ascci) %25;
+            int cifrado = (codllave + ascci) %26;
             cifrado = cifrado + 65;
             c = (char) cifrado;
             res = res + Character.toString(c);
